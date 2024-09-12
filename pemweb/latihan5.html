@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>latihan5</title>
+    <style>
+        body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f8ff; 
+    color: #333; 
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    font-family: 'Arial', sans-serif;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #4682b4;
+    margin-bottom: 20px;
+}
+
+form {
+    background-color: #ffffff;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 60%;
+    margin: 0 auto;
+    text-align: left;
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input[type="text"], textarea, select {
+    width: calc(100% - 22px); 
+    padding: 10px;
+    border: 1px solid #dcdcdc; 
+    border-radius: 4px; 
+    margin-bottom: 15px; 
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 100px; 
+    resize: vertical; 
+}
+
+input[type="radio"], input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.radio-group, .checkbox-group {
+    margin-bottom: 15px; 
+}
+
+input[type="submit"] {
+    background-color: #4682b4;
+    color: #ffffff; 
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #315a8f;
+}
+
+.radio-group label, .checkbox-group label {
+    margin-right: 20px;
+    display: inline-block;
+    font-weight: normal;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Belajar Membuat Formulir</h1>
+
+    <form action="">
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama" name="nama"><br>
+
+        <label for="nim">Nim:</label>
+        <input type="text" id="nim" name="nim"><br>
+
+        <label for="tanggallahir">Tanggal Lahir:</label>
+        <input type="text" id="tanggallahir" name="tanggallahir"><br>
+
+        <label for="tempatlahir">Tempat Lahir:</label>
+        <input type="text" id="tempatlahir" name="tempatlahir"><br>
+
+        <label for="alamat">Alamat:</label>
+        <textarea id="alamat" name="alamat"></textarea><br>
+
+        <div class="radio-group">
+            <label>Jenis Kelamin:</label><br>
+            <input type="radio" id="perempuan" name="jk" value="Perempuan">
+            <label for="perempuan">Perempuan</label>
+            <input type="radio" id="laki-laki" name="jk" value="Laki-laki">
+            <label for="laki-laki">Laki-laki</label>
+        </div>
+
+        <div class="checkbox-group">
+            <label>Hobi:</label><br>
+            <input type="checkbox" id="tidur" name="hobi" value="Tidur">
+            <label for="tidur">Tidur</label>
+            <input type="checkbox" id="makan" name="hobi" value="Makan">
+            <label for="makan">Makan</label>
+            <input type="checkbox" id="traveling" name="hobi" value="Traveling">
+            <label for="traveling">Traveling</label>
+            <input type="checkbox" id="masak" name="hobi" value="Masak">
+            <label for="masak">Masak</label>
+            <input type="checkbox" id="nonton" name="hobi" value="Nonton">
+            <label for="nonton">Nonton</label>
+        </div>
+
+        <label for="prodi">Program Studi:</label>
+        <select id="prodi" name="prodi">
+            <option value="SIK">Sistem Informasi Kelautan</option>
+            <option value="LK">Logistik Kelautan</option>
+            <option value="PGSD">Pendidikan Guru Sekolah Dasar</option>
+            <option value="PG-PAUD">Pendidikan Guru Pendidikan Anak Usia Dini</option>
+            <option value="PKP">Pendidikan Perikanan dan Kelautan</option>
+        </select><br>
+
+        <input type="submit" value="Simpan">
+    </form>
+</body>
+</html>
