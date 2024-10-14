@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIST TUGAS</title>
+    <link rel="stylesheet"  href="/style.css">
+</head>
+<body>
+    <h1>Daftar Tugas SIK</h1>
+    <table border="2">
+        <tr>
+            <th>No</th>
+            <th>Nama Tugas</th>
+            <th>Jenis Tugas</th>
+            <th>Nama Mata Kuliah</th>
+            <th>Deadline</th>
+            <th>Tempat Pengumpulan</th>
+            <th>Aksi</th>
+        </tr>
+        <% tugassik.forEach(user => {%>
+        <tr>
+            <td><%= user.no %></td>
+            <td><%= user.nama_tugas %></td>
+            <td><%= user.jenis_tugas %></td>
+            <td><%= user.nama_matkul %></td>
+            <td><%= user.deadline %></td>
+            <td><%= user.tempat_kumpul %></td>
+            <td>
+                <a href="/edit/<%=  user.no %>">Edit></a>
+                <a href="/delete/<%=  user.no %>">Hapus></a>
+            </td>
+        </tr>
+        <% }) %>
+    </table>
+
+    <h2>Tambah Tugas Baru</h2>
+    <form action="/add" method="post">
+        <label for="nama_tugas">Nama Tugas:</label>
+        <input type="text" id="nama_tugas" name="nama_tugas" required><br>
+        <label for="jenis_tugas">Jenis Tugas:</label>
+        <input type="text" name="jenis_tugas" id="jenis_tugas"><br>
+        <label for="nama_matkul">Nama Mata Kuliah:</label>
+        <input type="text" name="nama_matkul" id="nama_matkul"><br>
+        <label for="deadline">Deadline:</label>
+        <input type="text" name="deadline" id="deadline"><br>
+        <label for="tempat_kumpul">Tempat Pengumpulan:</label>
+        <input type="text" name="tempat_kumpul" id="tempat_kumpul"><br>
+        <button type="submit">Tambah</button>
+    </form>
+    
+</body>
+</html>

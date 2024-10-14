@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="/style.css">
+    <title>EDIT</title>
+</head>
+<body>
+    <h2>Edit data Tugas</h2>
+    <% if (user && user.no) { %>
+        <form action="/update/<%= user.no %>" method="post">
+        <label for="nama_tugas">Nama Tugas:</label>
+        <input type="text" id="nama_tugas" name="nama_tugas" required value="<%= user.nama_tugas %>"><br>
+        <label for="jenis_tugas">Jenis Tugas:</label>
+        <input type="text" name="jenis_tugas" id="jenis_tugas" value="<%= user.jenis_tugas %>"><br>
+        <label for="nama_matkul">Nama Matkul:</label>
+        <input type="text" name="nama_matkul" id="nama_matkul" value="<%= user.nama_matkul %>"><br>
+        <label for="deadline">Deadline:</label>
+        <input type="text" name="deadline" id="deadline" value="<%= user.deadline %>"><br>
+        <label for="tempat_kumpul">Tempat Kumpul:</label>
+        <input type="text" name="tempat_kumpul" id="tempat_kumpul" value="<%= user.tempat_kumpul %>"><br>
+        <button type="submit">Simpan</button>
+    </form>
+    <% } else { %>
+        <p>User tidak ditemukan.</p>
+    <% } %>
+
+</body>
+</html>
