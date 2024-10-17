@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e0f7fa; /* Warna latar belakang laut muda */
+    color: #004d40; /* Warna teks hijau gelap */
+    margin: 0;
+    padding: 20px;
+}
+
+h1, h2 {
+    color: #00796b; /* Warna judul biru kehijauan */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #00796b; /* Garis tabel biru kehijauan */
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #004d40; /* Warna latar belakang header tabel */
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #b2dfdb; /* Warna baris genap */
+}
+
+tr:hover {
+    background-color: #80cbc4; /* Warna saat hover */
+}
+
+form {
+    background-color: #b2ebf2; /* Warna latar belakang form */
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+input[type="text"],
+input[type="email"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #00796b; /* Warna border input */
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #00796b; /* Warna tombol */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #004d40; /* Warna tombol saat hover */
+}
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #00796b;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: none; /* Awalnya disembunyikan */
+}

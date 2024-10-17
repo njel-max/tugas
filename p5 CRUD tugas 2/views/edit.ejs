@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>EDIT</title>
+</head>
+<body>
+    <h2>Edit data Pengguna</h2>
+    <form action="/update/<%= user.id %>" method="post">
+        <label for="Name">Nama:</label>
+        <input type="text" id="name" name="name" required value="<%= user.name %>" placeholder="miko kyut"><br>
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" value="<%= user.email %>" placeholder="fufufafa@gmail.com"><br>
+        <label for="phone">Telepon:</label>
+        <input type="text" name="phone" id="phone" value="<%= user.phone %>" placeholder="505"><br>
+        <button type="submit">Simpan</button>
+
+    </form>
+    <div id="toast" class="toast">Pesan berhasil!</div>
+
+<script>
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.style.display = 'block';
+        setTimeout(() => {
+            toast.style.display = 'none';
+        }, 3000); // Tampilkan selama 3 detik
+    }
+</script>
+
+    <script>
+        function confirmEdit() {
+            return confirm("Yakin ingin di edit?");
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const message = urlParams.get('message');
+        if (message) {
+            alert(decodeURIComponent(message));
+        }
+
+        document.getElementById('editForm').addEventListener('submit', function(event) {
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        
+        if (!email.includes('@')) {
+            alert('Email tidak valid!');
+            event.preventDefault();
+        }
+        if (isNaN(phone) || phone.length < 10) {
+            alert('Nomor telepon tidak valid!');
+            event.preventDefault();
+        }
+    });
+
+    </script>
+</body>
+</html>
