@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal Event Desa</title>
+</head>
+<body>
+    <header>
+        <h1>Daftar Event di Desa</h1>
+        <nav>
+            <ul>
+                <li><a href="/destinations">Destinasi</a></li>
+                <li><a href="/events">Event</a></li>
+                <li><a href="/visitors">Pengunjung</a></li>
+                <li><a href="/accommodations">Penginapan</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <% if (events.length > 0) { %>
+            <ul>
+                <% events.forEach(event => { %>
+                    <li>
+                        <h2><%= event.title %></h2>
+                        <p><%= event.description %></p>
+                        <p>Tanggal: <%= event.event_date %></p>
+                        <p>Lokasi: <%= event.location %></p>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p>Tidak ada event yang ditemukan.</p>
+        <% } %>
+    </section>
+    <footer>
+        <p>&copy; 2024 Desa Wisata</p>
+    </footer>
+</body>
+</html>

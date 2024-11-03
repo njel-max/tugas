@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Selamat Datang, <%= user.username %></h1>
+        <nav>
+            <ul>
+                <li><a href="/destinations">Destinasi</a></li>
+                <li><a href="/events">Event</a></li>
+                <li><a href="/visitors">Pengunjung</a></li>
+                <li><a href="/accommodations">Penginapan</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <h2>Ini adalah dashboard Anda.</h2>
+        <p>Gunakan menu navigasi untuk mengakses fitur aplikasi.</p>
+    </section>
+    <footer>
+        <p>&copy; 2024 Desa Wisata</p>
+    </footer>
+</body>
+</html>

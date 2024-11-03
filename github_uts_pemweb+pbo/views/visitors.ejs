@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengunjung Desa</title>
+</head>
+<body>
+    <header>
+        <h1>Data Pengunjung Desa</h1>
+        <nav>
+            <ul>
+                <li><a href="/destinations">Destinasi</a></li>
+                <li><a href="/events">Event</a></li>
+                <li><a href="/visitors">Pengunjung</a></li>
+                <li><a href="/accommodations">Penginapan</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <h2>Tambah Pengunjung Baru</h2>
+        <form action="/tourism/visitors" method="POST">
+            <label for="name">Nama:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="contact">Kontak:</label>
+            <input type="text" id="contact" name="contact">
+            <label for="feedback">Feedback:</label>
+            <textarea id="feedback" name="feedback"></textarea>
+            <label for="visit_date">Tanggal Kunjungan:</label>
+            <input type="date" id="visit_date" name="visit_date">
+            <button type="submit">Tambah</button>
+        </form>
+
+        <h2>Daftar Pengunjung</h2>
+        <% if (visitors.length > 0) { %>
+            <ul>
+                <% visitors.forEach(visitor => { %>
+                    <li>
+                        <h3><%= visitor.name %></h3>
+                        <p>Kontak: <%= visitor.contact %></p>
+                        <p>Feedback: <%= visitor.feedback %></p>
+                        <p>Tanggal Kunjungan: <%= visitor.visit_date %></p>
+                        <form action="/tourism/visitors/<%= visitor.id %>" method="POST" style="display:inline;">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit">Hapus</button>
+                        </form>
+                        <a href="/tourism/visitors/edit/<%= visitor.id %>">Edit</a>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p>Tidak ada pengunjung yang ditemukan.</p>
+        <% } %>
+    </section>
+    <footer>
+        <p>&copy; 2024 Desa Wisata</p>
+    </footer>
+</body>
+</html>

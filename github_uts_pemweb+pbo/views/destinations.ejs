@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinasi Wisata</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Daftar Destinasi Wisata</h1>
+    </header>
+    <section>
+        <% if (destinations.length > 0) { %>
+            <ul>
+                <% destinations.forEach(destination => { %>
+                    <li>
+                        <a href="/tourism/destinations/<%= destination.id %>"><%= destination.name %></a>
+                        <p><%= destination.description %></p>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p>Tidak ada destinasi yang ditemukan.</p>
+        <% } %>
+    </section>
+    <footer>
+        <p>&copy; 2024 Desa Wisata</p>
+    </footer>
+</body>
+</html>
+
