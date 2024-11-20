@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/animate.css">
+    <link rel="stylesheet" href="/css/lineicons.css">
+    <link rel="stylesheet" href="/css/ud-styles.css">
+</head>
+<body>
+    <!-- ====== Header Start ====== -->
+    <header class="ud-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand" href="/">
+                            <img src="/img/log.svg" alt="Logo">
+                        </a>
+                        <button class="navbar-toggler">
+                            <span class="toggler-icon"> </span>
+                            <span class="toggler-icon"> </span>
+                            <span class="toggler-icon"> </span>
+                        </button>
+
+                        <div class="navbar-collapse">
+                            <ul id="nav" class="navbar-nav mx-auto">
+                                <li class="nav-item">
+                                    <a class="ud-menu-scroll" href="#home">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="ud-menu-scroll" href="#about">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="ud-menu-scroll" href="#info">Information</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="ud-menu-scroll" href="#map">Map</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="ud-menu-scroll" href="#contact">Contact</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="ud-menu-scroll" href="#reports">Reports</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="navbar-btn d-none d-sm-inline-block">
+                            <a href="/profile" class="ud-main-btn">Profile</a>
+                            <a href="/auth/logout" class="ud-main-btn ud-white-btn">Logout</a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== Header End ====== -->
+
+    <!-- ====== Reports List Start ====== -->
+    <section id="reports" class="ud-reports">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ud-section-title">
+                        <h2>Reports</h2>
+                        <p>Here you can view, edit, or delete your reports.</p>
+                    </div>
+                    <div class="ud-reports-list">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if (typeof reports !== 'undefined' && reports.length > 0) { %>
+                                    <% reports.forEach(report => { %>
+                                        <tr>
+                                            <td><%= report.title %></td>
+                                            <td><%= report.description %></td>
+                                            <td><%= report.created_at %></td>
+                                            <td>
+                                                <a href="/report/edit/<%= report.id %>" class="btn btn-primary btn-sm">Edit</a>
+                                                <form action="/report/delete/<%= report.id %>" method="POST" class="d-inline">
+                                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    <% }) %>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="4" class="text-center">No reports found</td>
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== Reports List End ====== -->
+
+    <!-- ====== Footer Start ====== -->
+    <footer class="ud-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="ud-footer-text">© 2023 Oil Spill Impact Tracker. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ====== Footer End ====== -->
+
+    <!-- ====== All Javascript Files ====== -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>

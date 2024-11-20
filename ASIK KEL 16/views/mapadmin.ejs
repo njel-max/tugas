@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/animate.css">
+    <link rel="stylesheet" href="/css/lineicons.css">
+    <link rel="stylesheet" href="/css/ud-styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        .leaflet-container {
+            height: 400px;
+            width: 100%;
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- ====== Header Start ====== -->
+    <header class="ud-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand" href="/">
+                            <img src="/img/log.svg" alt="Logo">
+                        </a>
+                        <button class="navbar-toggler">
+                            <span class="toggler-icon"> </span>
+                            <span class="toggler-icon"> </span>
+                            <span class="toggler-icon"> </span>
+                        </button>
+
+                        <div class="navbar-collapse">
+                            <ul id="nav" class="navbar-nav mx-auto">
+                                <li class="nav-item">
+                                    <a class="ud-menu-scroll" href="#home">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="ud-menu-scroll" href="#about">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="ud-menu-scroll" href="#info">Information</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="ud-menu-scroll" href="#map">Map</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="ud-menu-scroll" href="#contact">Contact</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="ud-menu-scroll" href="#reports">Reports</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="navbar-btn d-none d-sm-inline-block">
+                            <a href="/profile" class="ud-main-btn">Profile</a>
+                            <a href="/auth/logout" class="ud-main-btn ud-white-btn">Logout</a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== Header End ====== -->
+
+    <!-- ====== Map Section Start ====== -->
+    <section id="map" class="ud-map">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ud-section-title">
+                        <h2>Map</h2>
+                        <p>Here you can view the map, add new data, and see statistics.</p>
+                    </div>
+                    <div id="map" class="leaflet-container"></div>
+                    <script>
+                        const map = L.map('map').setView([0, 0], 2); // Adjust the default coordinates and zoom level as needed
+
+                        // Add OpenStreetMap tiles
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            maxZoom: 19,
+                        }).addTo(map);
+
+                        // Add GeoJSON layers
+                        <% locations.forEach(function(location) { %>
+                            var geojson = <%- JSON.stringify(location.geojson) %>;
+                            L.geoJSON(geojson).addTo(map)
+                                .bindPopup("<strong>Area:</strong> <%= location.area %><br><strong>Description:</strong> <%= location.description %><br><strong>Type:</strong> <%= location.type %>");
+                        <% }) %>
+                    </script>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== Map Section End ====== -->
+<!-- ====== Add Data Form Start ====== -->
+<section id="add-data" class="ud-add-data mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ud-section-title">
+                    <h2>Add New Data</h2>
+                    <p>Use the form below to add new data to the map.</p>
+                </div>
+                <form action="/map" method="POST">
+                    <div class="mb-3">
+                        <label for="geojson" class="form-label">GeoJSON</label>
+                        <textarea class="form-control" id="geojson" name="geojson" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="area" class="form-label">Area</label>
+                        <input type="text" class="form-control" id="area" name="area" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="type" class="form-label">Type</label>
+                        <input type="text" class="form-control" id="type" name="type" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                <!-- Display existing records -->
+                <h3 class="mt-4">Existing Locations</h3>
+                <ul id="location-list">
+                    <% locations.forEach(location => { %>
+                        <li>
+                            <strong><%= location.area %></strong> - <%= location.description %> 
+                            (<%= location.type %>)
+                            <a href="/map/edit/<%= location.id %>" class="btn btn-sm btn-primary">Edit</a>
+                            <form action="/map/delete/<%= location.id %>" method="POST" class="d-inline">
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        </li>
+                    <% }) %>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ====== Add Data Form End ====== -->
+
+<!-- ====== Footer Start ====== -->
+<footer class="ud-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <p class="ud-footer-text">© 2023 Oil Spill Impact Tracker. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- ====== Footer End ====== -->
+
+<!-- ====== All Javascript Files ====== -->
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/wow.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+    // Leaflet map initialization
+    var map = L.map('map').setView([0, 0], 2); // Adjust the default coordinates and zoom level as needed
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+    }).addTo(map);
+
+    // Add GeoJSON layers
+    <% locations.forEach(function(location) { %>
+        var geojson = <%- JSON.stringify(location.geojson) %>;
+        L.geoJSON(geojson).addTo(map)
+            .bindPopup("<strong>Area:</strong> <%= location.area %><br><strong>Description:</strong> <%= location.description %><br><strong>Type:</strong> <%= location.type %>");
+    <% }) %>
+</script>
+</body>
+</html>
+
+    

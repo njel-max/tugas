@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/animate.css">
+    <link rel="stylesheet" href="/css/lineicons.css">
+    <link rel="stylesheet" href="/css/ud-styles.css">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        .profile-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- ====== Header Start ====== -->
+    <header class="ud-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand" href="/">
+                            <img src="/img/log.svg" alt="Logo">
+                        </a>
+                        <button class="navbar-toggler">
+                            <span class="toggler-icon"> </span>
+                            <span class="toggler-icon"> </span>
+                            <span class="toggler-icon"> </span>
+                        </button>
+
+                        <div class="navbar-collapse">
+                            <ul id="nav" class="navbar-nav mx-auto">
+                                <li class="nav-item">
+                                    <a class="ud-menu-scroll" href="#home">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="ud-menu-scroll" href="#about">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="ud-menu-scroll" href="#info">Information</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="ud-menu-scroll" href="#map">Map</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="ud-menu-scroll" href="#contact">Contact</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="ud-menu-scroll" href="#reports">Reports</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="navbar-btn d-none d-sm-inline-block">
+                            <a href="/profile" class="ud-main-btn">Profile</a>
+                            <a href="/auth/logout" class="ud-main-btn ud-white-btn">Logout</a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== Header End ====== -->
+
+    <!-- ====== Profile Section Start ====== -->
+    <section id="profile" class="profile-section mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 profile-container">
+                    <div class="ud-section-title">
+                        <h2>User Profile</h2>
+                    </div>
+                    <form action="/profile/edit" method="POST">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" value="<%= user.username %>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Profile</button>
+                    </form>
+                    <hr>
+                    <div>
+                        <h3>Account Information</h3>
+                        <p><strong>Username:</strong> <%= user.username %></p>
+                        <p><strong>Email:</strong> <%= user.email %></p>
+                        <p><strong>Member since:</strong> <%= new Date(user.created_at).toLocaleDateString() %></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== Profile Section End ====== -->
+</body>
+</html>
